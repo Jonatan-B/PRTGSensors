@@ -16,11 +16,6 @@ $myScriptBlock = [scriptblock]{
 		$EstablishedConnections = ($OutboundConnections | Where-Object { $_.State -eq "Established"}).length
 		$TimeWaitConnections = ($OutboundConnections | Where-Object { $_.State -eq "TimeWait"}).length
 	
-		if($totalConnections -gt ($maxNumberOfPorts - 1000)){
-			$OutboundConnections | Group-Object -Property OwningProcess | Select-Object @{n="ProcessName";e={(Get-Process -Id $_.Name).Name}}, @{n="ProcessID";e={$_.Name}} , Count | Sort-Object -Property Count -Descending | Export-Csv "\\efoqa.com\shares\logs\ePortsLogs\$([Environment]::MachineName)_ePorts_pids-$(Get-Date -Format mmddyyyy_hhmmss).csv"
-			$OutboundConnections | Export-Csv "\\efoqa.com\shares\logs\ePortsLogs\$([Environment]::MachineName)_ePorts_connections-$(Get-Date -Format mmddyyyy_hhmmss).csv"
-		}
-	
 		
 		$object = New-Object psobject
 		$object | Add-Member -MemberType NoteProperty -Name "TotalConnections" -Value $totalConnections
@@ -32,11 +27,6 @@ $myScriptBlock = [scriptblock]{
 	
 		$object
 	}
-}
-
-if($ComputerName -notmatch 'efoqa.com')
-{
-    $ComputerName = "$($ComputerName).efoqa.com"
 }
 
 '<?xml version="1.0" encoding="Windows-1252" ?>'
