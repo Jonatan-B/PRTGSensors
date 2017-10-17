@@ -1,3 +1,13 @@
+<#
+    .SYNOPSIS
+    This monitor gather memory information from a server, but will accomodate for servers with Dynamic Memory.
+    .PARAMETER ComputerName
+    The name of the computer where the monitor will gather Memory statistics.
+    .NOTES
+    The reason why this sensor was created was because we had issues with the built in Memory sensor throwing alerts
+    when a machine would run out of memory, but then the dynamic memory would increase and would clear the alerts, and
+    rinse and repeat when increasing and decreasing the dynamic memory. 
+#>
 param(
     [Parameter(Mandatory)]
     $ComputerName

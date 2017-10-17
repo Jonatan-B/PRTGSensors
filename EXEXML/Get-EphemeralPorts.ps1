@@ -1,3 +1,9 @@
+<#
+    .SYNOPSIS
+    This monitor gather the number of ephemeral ports on a server, so that they may be monitored through PRTG.
+    .PARAMETER ComputerName
+    The name of the computer where the Ports will be checked.
+#>
 param(
     [Parameter(Mandatory)]
     $ComputerName

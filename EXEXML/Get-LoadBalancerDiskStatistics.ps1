@@ -13,6 +13,16 @@
     The username that will be used to perform the API calls.
     .PARAMETER PRTGServer
     The password hash that will be used to perform the API calls.
+    .NOTES
+    This function will require a 'mock' device to be created for the Cluster with the name of the cluster. The cmdlet will use the 'VolumeLabel' 
+    of the drive, and will gather information based on that. If the label is not unique, or there is cloned drives this function will fail for those devices.
+    
+    You'll need to create a new Sensor with the name 'Disk Statistics - VolumeLabel', the sensor must use proper Windows credentials that can run WMI queries
+    on the cluster machines, and use the following execparams_:
+
+    -ClusterName %host -VolumeLabel volumelabelhere -sensorID %sensorid
+
+    The script will then modify the name of the sensor to include the current node where the volume is located, and will gather statistics base on that node.     
 #>
 [CmdletBinding()]
 param (
