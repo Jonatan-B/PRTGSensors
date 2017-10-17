@@ -1,7 +1,6 @@
 <#
 .SYNOPSIS
     This script will grab statistics from the IIS ARR Load Balancer for a particular server and return them to PRTG to serve as a custom sensor. 
-
 .PARAMETER ComputerName
     The Load balancing server.
 .PARAMETER ApiNode
